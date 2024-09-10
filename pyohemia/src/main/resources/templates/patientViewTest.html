@@ -1,0 +1,404 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>查看检测记录</title>
+    <meta name="description" content="AdminLTE2定制版">
+    <meta name="keywords" content="AdminLTE2定制版">
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+            name="viewport">
+
+
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionicons/css/ionicons.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/iCheck/square/blue.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/morris/morris.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/datepicker/datepicker3.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/datatables/dataTables.bootstrap.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/treeTable/jquery.treetable.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/treeTable/jquery.treetable.theme.default.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/select2/select2.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/colorpicker/bootstrap-colorpicker.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/adminLTE/css/AdminLTE.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/adminLTE/css/skins/_all-skins.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionslider/ion.rangeSlider.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionslider/ion.rangeSlider.skinNice.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-slider/slider.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css}">
+</head>
+
+<body class="hold-transition skin-purple sidebar-mini">
+
+<div class="wrapper">
+
+    <div th:replace="commons/bar::#headerbar"></div>
+    <div  th:replace="commons/bar::#sidebar"></div>
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <div class="content-wrapper">
+
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                患者管理 <small>查看检测数据</small>
+            </h1>
+
+        </section>
+        <!-- 内容头部 /-->
+
+            <form action="/patient/editTest" method="post" disabled="disabled">
+
+
+
+            <!-- 正文区域 -->
+            <section class="content">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">检测数据</div>
+                    <div class="row data-type">
+                        <div class="col-md-4 data" hidden="hidden">
+                            <input type="text" class="form-control" name="id"
+                                   placeholder="id"  th:value="${inspect.id}" readonly="readonly">
+                        </div>
+                        <div class="col-md-2 title">检测时间</div>
+                        <div class="col-md-4 data">
+                            <input type="datetime-local"  step="1"  class="form-control" name="createDate"
+                                   placeholder="检测时间" value="" th:value="${inspecttime}">
+                        </div>
+
+                        <div class="col-md-2 title">平均动脉压（mmHg）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled"  class="form-control" name="meanArterialPressure" placeholder=""  value="" th:value="${inspect.meanArterialPressure}">
+                        </div>
+                        <div class="col-md-2 title">多巴胺剂量（μg/kg/min）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="dopamineDose" placeholder=""  value="" th:value="${inspect.dopamineDose}">
+                        </div>
+                        <div class="col-md-2 title" style="font-size: small;">肾上腺素剂量（μg/kg/min）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="adrenalineDose" placeholder=""  value="" th:value="${inspect.adrenalineDose}">
+                        </div>
+
+                        <div class="col-md-2 title" style="font-size: small;">去甲肾上腺素剂量（μg/kg/min）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="norepinephrineDose" placeholder=""  value="" th:value="${inspect.norepinephrineDose}">
+                        </div>
+
+                        <div class="col-md-2 title">多巴酚丁胺（是/否）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="dobutamine" placeholder=""  value="" th:value="${inspect.dobutamine}">
+                        </div>
+                        <div class="col-md-2 title">PaO2/FiO2（mmHg）</div>
+                        <div class="col-md-4 data">
+
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="paoz" placeholder=""  value="" th:value="${inspect.paoz}">
+
+                        </div>
+                        <div class="col-md-2 title">呼吸支持（是/否）</div>
+                        <div class="col-md-4 data">
+
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="breathing" placeholder=""  value="" th:value="${inspect.breathing}">
+
+                        </div>
+
+                        <div class="col-md-2 title">肌酐（μmol/L）</div>
+                        <div class="col-md-4 data">
+
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="creatinine" placeholder=""  value="" th:value="${inspect.creatinine}">
+
+                        </div>
+
+                        <div class="col-md-2 title">24小时尿量（ml/24h）</div>
+                        <div class="col-md-4 data">
+
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="urinevolume" placeholder=""  value="" th:value="${inspect.urinevolume}">
+
+                        </div>
+
+                        <div class="col-md-2 title">胆红素（μmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="bilirubin" placeholder=""  value="" th:value="${inspect.bilirubin}">
+                        </div>
+
+                        <div class="col-md-2 title">血小板（×10^9/L）</div>
+                        <div class="col-md-4 data">
+
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="bloodPlatelet" placeholder=""  value="" th:value="${inspect.bloodPlatelet}">
+
+                        </div>
+                        <div class="col-md-2 title">GCS评分</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="gcs" placeholder=""  value="" th:value="${inspect.gcs}">
+
+                        </div>
+
+
+
+                        <div class="col-md-2 title">总胆红素（umol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="totalBilirubin" placeholder=""  th:value="${inspect.gcs}">
+                        </div>
+
+                        <div class="col-md-2 title">直接胆红素（umol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="directBilirubin" placeholder=""  th:value="${inspect.gcs}">
+                        </div>
+
+                        <div class="col-md-2 title">尿肌酐（mg/d）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="urinaryCreatinine" placeholder="" th:value="${inspect.gcs}">
+                        </div>
+
+                        <div class="col-md-2 title">酸碱度</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="ph" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+
+                        <div class="col-md-2 title">动脉血二氧化碳分压（mmHg）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="paco2" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+
+                        <div class="col-md-2 title">碳酸氢根（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="hco3" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+                        <div class="col-md-2 title">谷草转氨酶（单位/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="ast" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+                        <div class="col-md-2 title">血尿素氮（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="bun" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+                        <div class="col-md-2 title">钙离子（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="calcium" placeholder=""  value="" th:value="${inspect.calcium}">
+                        </div>
+                        <div class="col-md-2 title">葡萄糖（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="glucose" placeholder=""  value="" th:value="${inspect.glucose}">
+                        </div>
+                        <div class="col-md-2 title">乳酸盐（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="lactate" placeholder=""  value="" th:value="${inspect.lactate}">
+                        </div>
+                        <div class="col-md-2 title">镁离子（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="magnesium" placeholder=""  value="" th:value="${inspect.magnesium}">
+                        </div>
+                        <div class="col-md-2 title">磷酸盐（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="phosphate" placeholder=""  value="" th:value="${inspect.phosphate}">
+                        </div>
+                        <div class="col-md-2 title">钾离子（mmol/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="potassium" placeholder=""  value="" th:value="${inspect.potassium}">
+                        </div>
+                        <div class="col-md-2 title">红细胞比容（%）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="hct" placeholder=""  value="" th:value="${inspect.hct}">
+                        </div>
+                        <div class="col-md-2 title">血红蛋白（g/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="hgb" placeholder=""  value="" th:value="${inspect.gcs}">
+                        </div>
+                        <div class="col-md-2 title">白细胞（uL）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="wbc" placeholder=""  value="" th:value="${inspect.wbc}">
+                        </div>
+                        <div class="col-md-2 title">血纤维蛋白原（g/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="fibrinogen" placeholder=""  value="" th:value="${inspect.fibrinogen}">
+                        </div>
+                        <div class="col-md-2 title">肌钙蛋白（μg/L）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="troponin" placeholder=""  value="" th:value="${inspect.troponin}">
+                        </div>
+                        <div class="col-md-2 title">心率（次/min）</div>
+                        <div class="col-md-4 data">
+                            <input type="number" step ="0.1" disabled="disabled" class="form-control" name="heartrate" placeholder=""  value="" th:value="${inspect.heartrate}">
+                        </div>
+
+
+
+                    </div>
+                </div><!--工具栏-->
+                <div class="box-tools text-center">
+                    <!--<button type="submit" class="btn bg-maroon">保存</button>-->
+                    <button type="button" class="btn btn-bitbucket"
+                            onclick="history.go(-1);">返回</button>
+                </div>
+                <!--工具栏/--> </section>
+            <!-- 正文区域 /-->
+        </form>
+    </div>
+    <!-- 内容区域 /-->
+
+</div>
+
+
+<script
+        src="/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script
+        src="/plugins/jQueryUI/jquery-ui.min.js"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script
+        src="/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script
+        src="/plugins/raphael/raphael-min.js"></script>
+<script
+        src="/plugins/morris/morris.min.js"></script>
+<script
+        src="/plugins/sparkline/jquery.sparkline.min.js"></script>
+<script
+        src="/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script
+        src="/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script
+        src="/plugins/knob/jquery.knob.js"></script>
+<script
+        src="/plugins/daterangepicker/moment.min.js"></script>
+<script
+        src="/plugins/daterangepicker/daterangepicker.js"></script>
+<script
+        src="/plugins/daterangepicker/daterangepicker.zh-CN.js"></script>
+<script
+        src="/plugins/datepicker/bootstrap-datepicker.js"></script>
+<script
+        src="/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js"></script>
+<script
+        src="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script
+        src="/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script
+        src="/plugins/fastclick/fastclick.js"></script>
+<script
+        src="/plugins/iCheck/icheck.min.js"></script>
+<script
+        src="/plugins/adminLTE/js/app.min.js"></script>
+<script
+        src="/plugins/treeTable/jquery.treetable.js"></script>
+<script
+        src="/plugins/select2/select2.full.min.js"></script>
+<script
+        src="/plugins/colorpicker/bootstrap-colorpicker.min.js"></script>
+<script
+        src="/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js"></script>
+<script
+        src="/plugins/bootstrap-markdown/js/bootstrap-markdown.js"></script>
+<script
+        src="/plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js"></script>
+<script
+        src="/plugins/bootstrap-markdown/js/markdown.js"></script>
+<script
+        src="/plugins/bootstrap-markdown/js/to-markdown.js"></script>
+<script
+        src="/plugins/ckeditor/ckeditor.js"></script>
+<script
+        src="/plugins/input-mask/jquery.inputmask.js"></script>
+<script
+        src="/plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script
+        src="/plugins/input-mask/jquery.inputmask.extensions.js"></script>
+<script
+        src="/plugins/datatables/jquery.dataTables.min.js"></script>
+<script
+        src="/plugins/datatables/dataTables.bootstrap.min.js"></script>
+<script
+        src="/plugins/chartjs/Chart.min.js"></script>
+<script
+        src="/plugins/flot/jquery.flot.min.js"></script>
+<script
+        src="/plugins/flot/jquery.flot.resize.min.js"></script>
+<script
+        src="/plugins/flot/jquery.flot.pie.min.js"></script>
+<script
+        src="/plugins/flot/jquery.flot.categories.min.js"></script>
+<script
+        src="/plugins/ionslider/ion.rangeSlider.min.js"></script>
+<script
+        src="/plugins/bootstrap-slider/bootstrap-slider.js"></script>
+<script
+        src="/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // 选择框
+        $(".select2").select2();
+
+        // WYSIHTML5编辑器
+        $(".textarea").wysihtml5({
+            locale : 'zh-CN'
+        });
+    });
+
+    // 设置激活菜单
+    function setSidebarActive(tagUri) {
+        var liObj = $("#" + tagUri);
+        if (liObj.length > 0) {
+            liObj.parent().parent().addClass("active");
+            liObj.addClass("active");
+        }
+    }
+
+    $(document).ready(function() {
+        $('#datepicker-a3').datetimepicker({
+            format : "yyyy-mm-dd hh:ii",
+            autoclose : true,
+            todayBtn : true,
+            language : "zh-CN"
+        });
+    });
+
+    $(document).ready(function() {
+        // 激活导航位置
+        setSidebarActive("order-manage");
+        $("#datepicker-a3").datetimepicker({
+            format : "yyyy-mm-dd hh:ii",
+
+        });
+
+    });
+</script>
+
+
+</body>
+
+</html>

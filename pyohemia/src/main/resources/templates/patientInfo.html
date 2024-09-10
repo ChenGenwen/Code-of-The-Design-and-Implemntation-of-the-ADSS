@@ -1,0 +1,349 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <!-- 页面meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>脓毒症辅助诊断系统</title>
+    <meta name="description" content="AdminLTE2定制版">
+    <meta name="keywords" content="AdminLTE2定制版">
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta
+            content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+            name="viewport">
+
+    <link rel=“stylesheet”
+          th:href="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/font-awesome/css/font-awesome.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionicons/css/ionicons.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/iCheck/square/blue.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/morris/morris.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/datepicker/datepicker3.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/daterangepicker/daterangepicker.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/datatables/dataTables.bootstrap.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/treeTable/jquery.treetable.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/treeTable/jquery.treetable.theme.default.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/select2/select2.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/colorpicker/bootstrap-colorpicker.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-markdown/css/bootstrap-markdown.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/adminLTE/css/AdminLTE.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/adminLTE/css/skins/_all-skins.min.css}">
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionslider/ion.rangeSlider.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/ionslider/ion.rangeSlider.skinNice.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-slider/slider.css}">
+    <link rel="stylesheet"
+          th:href="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.css}">
+</head>
+
+
+<style>
+
+
+    .trfont{
+        font-size: smaller;
+    }
+</style>
+
+<body class="hold-transition skin-blue sidebar-mini">
+
+<div class="wrapper">
+
+    <!-- 页面头部 -->
+    <div th:replace="commons/bar::#headerbar"></div>
+
+    <!-- 页面头部 /-->
+
+    <!-- 导航侧栏 -->
+    <div th:replace="commons/bar::#sidebar"></div>
+    <!-- 导航侧栏 /-->
+
+    <!-- 内容区域 -->
+    <div class="content-wrapper">
+
+        <!-- 内容头部 -->
+        <section class="content-header">
+            <h1>
+                患者信息 <small>信息详情</small>
+            </h1>
+        </section>
+        <!-- 内容头部 /-->
+        <!-- 正文区域 -->
+        <section class="content">
+            <!--基本信息-->
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-weight: bold">基本信息</div>
+                <!--数据列表-->
+                <table id="dataList"
+                       class="table table-bordered table-striped table-hover dataTable">
+                    <thead>
+                    <tr>
+                        <th class="text-center" style="padding-right: 0;" >患者编号</th>
+                        <th class="text-center" style="padding-right: 0;" >姓名</th>
+                        <th class="text-center" style="padding-right: 0;" >年龄</th>
+                        <th class="text-center" style="padding-right: 0;" >性别</th>
+                        <th class="text-center" style="padding-right: 0;" >联系电话</th>
+                        <th class="text-center" style="padding-right: 0;" >籍贯</th>
+                        <th class="text-center" style="padding-right: 0;" >主诉</th>
+                        <th class="text-center" style="padding-right: 0;" >入院时间</th>
+                        <th class="text-center" style="padding-right: 0;" >入院症状</th>
+                        <th class="text-center" style="padding-right: 0;" >既往史</th>
+                        <th class="text-center" style="padding-right: 0;" >过敏史</th>
+                        <th class="text-center" style="padding-right: 0;" >主治医师</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="text-center"th:text="${patient.id}"></td>
+                        <td class="text-center"th:text="${patient.name}"></td>
+                        <td class="text-center"th:text="${patient.age}"></td>
+                        <td class="text-center"th:text="${patient.gender}"></td>
+                        <td class="text-center"th:text="${patient.phone}"></td>
+                        <td class="text-center"th:text="${patient.nativeplace}"></td>
+                        <td class="text-center"th:text="${patient.complaint}"></td>
+                        <td class="text-center"th:text="${patient.admissionTime}"></td>
+                        <td class="text-center"th:text="${patient.admissionSymptom}"></td>
+                        <td class="text-center"th:text="${patient.pasthistory}"></td>
+                        <td class="text-center"th:text="${patient.allergy}"></td>
+                        <td class="text-center"th:text="${patient.createBy}"></td>
+
+                    </tr>
+
+                    </tbody>
+                </table>
+                <!--数据列表/-->
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading" style="font-weight: bold" sec:authorize="hasRole('DOCTOR')">检测数据记录 <button type="button" class="btn bg-olive btn-xs" th:onclick="|addTest(${patient.getId()})|">添加检测记录</button></div>
+
+                <!--数据列表-->
+                <table id="dataList2" class="table table-bordered table-striped table-hover dataTable">
+                    <thead>
+                    <tr>
+                        <th class="text-center trfont" style="padding-right: 0px;">检测时间</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">平均动脉压（mmHg）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">多巴胺剂量（μg/kg/min）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">肾上腺素剂量（μg/kg/min）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">去甲肾上腺素剂量（μg/kg/min）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">多巴酚丁胺（是/否）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">PaO2/FiO2（mmHg）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">呼吸支持（是/否）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">肌酐（μmol/L）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">24小时尿量（ml/24h）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">胆红素（μmol/L）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">血小板（×10^9/L）</th>
+                        <th class="text-center trfont" style="padding-right: 0px;">GCS评分</th>
+                        <!--<th class="text-center trfont" style="padding-right: 0px;">评分</th>-->
+                        <th class="text-center trfont" style="padding-right: 0;" sec:authorize="hasRole('DOCTOR')"  >操作</th>
+                    </tr>
+                    </thead>
+                    <tr th:each="inspect:${patient.getInspects()}">
+                        <td class="text-center trfont" th:text="${inspect.createDate}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.meanArterialPressure}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.dopamineDose}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.adrenalineDose}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.norepinephrineDose}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.dobutamine}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.paoz}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.breathing}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.creatinine}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.urinevolume}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.bilirubin}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.bloodPlatelet}" ></td>
+                        <td class="text-center trfont" th:text="${inspect.gcs}" ></td>
+                        <!--<td class="text-center trfont" th:text="${inspect.overallScore}" ></td>-->
+                        <td class="text-center trfont" sec:authorize="hasRole('DOCTOR')" >
+                            <button type="button" sec:authorize="hasRole('DOCTOR')" class="btn btn-success" th:onclick="|editpatientTest(${inspect.id})|">编辑</button>
+                            <button type="button" sec:authorize="hasRole('DOCTOR')" class="btn btn-default" th:onclick="|viewpatientTest(${inspect.id})|">查看</button>
+                            <button sec:authorize="hasRole('DOCTOR')" type="button" class="btn btn-danger" th:onclick="|deletepatientTest(${inspect.id})|">删除</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section><!--工具栏/-->
+        <!-- 正文区域 /-->
+        <div class="box-tools text-center">
+            <button type="button" class="btn btn-bitbucket"
+                    onclick="history.back(-1);">返回</button>
+        </div>
+    </div>
+    <!-- 内容区域 /-->
+</div>
+
+<script
+        th:src="@{/plugins/jQuery/jquery-2.2.3.min.js}"></script>
+<script
+        th:src="@{/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<script>
+    $.widget.bridge('uibutton', $.ui.button);
+</script>
+<script
+        th:src="@{/plugins/bootstrap/js/bootstrap.min.js}"></script>
+<script
+        th:src="@{/plugins/raphael/raphael-min.js}"></script>
+<script
+        th:src="@{/plugins/morris/morris.min.js}"></script>
+<script
+        th:src="@{/plugins/sparkline/jquery.sparkline.min.js}"></script>
+<script
+        th:src="@{/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js}"></script>
+<script
+        th:src="@{/plugins/jvectormap/jquery-jvectormap-world-mill-en.js}"></script>
+<script
+        th:src="@{/plugins/knob/jquery.knob.js}"></script>
+<script
+        th:src="@{/plugins/daterangepicker/moment.min.js}"></script>
+<script
+        th:src="@{/plugins/daterangepicker/daterangepicker.js}"></script>
+<script
+        th:src="@{/plugins/daterangepicker/daterangepicker.zh-CN.js}"></script>
+<script
+        th:src="@{/plugins/datepicker/bootstrap-datepicker.js}"></script>
+<script
+        th:src="@{/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js}"></script>
+<script
+        th:src="@{/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+<script
+        th:src="@{/plugins/fastclick/fastclick.js}"></script>
+<script
+        th:src="@{/plugins/iCheck/icheck.min.js}"></script>
+<script
+        th:src="@{/plugins/adminLTE/js/app.min.js}"></script>
+<script
+        th:src="@{/plugins/treeTable/jquery.treetable.js}"></script>
+<script
+        th:src="@{/plugins/select2/select2.full.min.js}"></script>
+<script
+        th:src="@{/plugins/colorpicker/bootstrap-colorpicker.min.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-wysihtml5/bootstrap-wysihtml5.zh-CN.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-markdown/js/bootstrap-markdown.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-markdown/locale/bootstrap-markdown.zh.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-markdown/js/markdown.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-markdown/js/to-markdown.js}"></script>
+<script
+        th:src="@{/plugins/ckeditor/ckeditor.js}"></script>
+<script
+        th:src="@{/plugins/input-mask/jquery.inputmask.js}"></script>
+<script
+        th:src="@{/plugins/input-mask/jquery.inputmask.date.extensions.js}"></script>
+<script
+        th:src="@{/plugins/input-mask/jquery.inputmask.extensions.js}"></script>
+<script
+        th:src="@{/plugins/datatables/jquery.dataTables.min.js}"></script>
+<script
+        th:src="@{/plugins/datatables/dataTables.bootstrap.min.js}"></script>
+<script
+        th:src="@{/plugins/chartjs/Chart.min.js}"></script>
+<script
+        th:src="@{/plugins/flot/jquery.flot.min.js}"></script>
+<script
+        th:src="@{/plugins/flot/jquery.flot.resize.min.js}"></script>
+<script
+        th:src="@{/plugins/flot/jquery.flot.pie.min.js}"></script>
+<script
+        th:src="@{/plugins/flot/jquery.flot.categories.min.js}"></script>
+<script
+        th:src="@{/plugins/ionslider/ion.rangeSlider.min.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-slider/bootstrap-slider.js}"></script>
+<script
+        th:src="@{/plugins/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js}"></script>
+
+<script>
+    function edit(id) {
+        location.href = "/patient/update/"+ id;  }
+    function addTest(id) {
+        location.href = "/patient/toAddTest/" + id;
+
+    }
+    function editpatientTest(id) {
+        location.href = "/patient/toEditTest/"+ id;
+    }
+    function viewpatientTest(id) {
+        location.href = "/patient/toViewTest/"+ id;
+    }
+    function deletepatientTest(id) {
+        console.log(id);
+        location.href = "/patient/deleteTest/"+ id;
+    }
+    $(document).ready(function() {
+        // 选择框
+        $(".select2").select2();
+
+        // WYSIHTML5编辑器
+        $(".textarea").wysihtml5({
+            locale : 'zh-CN'
+        });
+    });
+
+    // 设置激活菜单
+    function setSidebarActive(tagUri) {
+        var liObj = $("#" + tagUri);
+        if (liObj.length > 0) {
+            liObj.parent().parent().addClass("active");
+            liObj.addClass("active");
+        }
+    }
+
+    $(document).ready(function() {
+
+        // 激活导航位置
+        setSidebarActive("order-manage");
+
+        // 列表按钮
+        $("#dataList td input[type='checkbox']").iCheck({
+            checkboxClass : 'icheckbox_square-blue',
+            increaseArea : '20%'
+        });
+        // 全选操作
+        $("#selall").click(function() {
+            var clicks = $(this).is(':checked');
+            if (!clicks) {
+                $("#dataList td input[type='checkbox']").iCheck("uncheck");
+            } else {
+                $("#dataList td input[type='checkbox']").iCheck("check");
+            }
+            $(this).data("clicks", !clicks);
+        });
+    });
+</script>
+</body>
+
+
+</html>
